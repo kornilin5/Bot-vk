@@ -1,5 +1,6 @@
 import time
 
+
 class UserBlocker:
     """
     Класс UserBlocker реализует функционал блокировки пользователей.
