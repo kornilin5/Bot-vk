@@ -21,7 +21,7 @@ class SpamCheckerManager:
                 and difference_time <= self.MESSAGE_LIMIT_INTERVAL):
             print('Условия спама сработали')
             return True
-           
+
         elif difference_time > self.MESSAGE_LIMIT_INTERVAL:
             user_object.reset_attributes()
             print(
