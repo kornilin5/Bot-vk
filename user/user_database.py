@@ -27,27 +27,25 @@ class UserDatabaseInfo:
 
     def check_in_database(self, user_id):
         """
-                Функция проверки пользователя в базе данных
-            """
+        Функция проверки пользователя в базе данных
+        """
         with self.connection_mysql() as connection:
             cursor = connection.cursor()
             query = "SELECT * FROM users WHERE user_id = %s"
             cursor.execute(query, (user_id, ))
             user_exists = cursor.fetchone()
             if user_exists:
-                print("пользователь есть в базе данных")
                 return True
             else:
                 return False
 
     def add_to_database(self, user_id):
         """
-                Функция добавления пользователя в базу данных
-            """
+        Функция добавления пользователя в базу данных
+        """
         with self.connection_mysql() as connection:
             cursor = connection.cursor()
             # Если пользователя нет в базе, добавляем его
             query = "INSERT INTO users (user_id) VALUES (%s)"
             cursor.execute(query, (user_id, ))
             connection.commit()
-            print("Юзер добавлен в базу данных")

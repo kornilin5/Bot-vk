@@ -18,7 +18,6 @@ class UserBlocker:
         start_time = time.time()
         self.banned_users[
             user_id] = start_time + self.DEFAULT_BLOCK_TIME_SECONDS
-        print(f'{self.banned_users[user_id]} - это забаненный пользователь')
 
     def remove_ban_and_reset_attributes(self, user_id, user_object):
         if user_id in self.banned_users:

@@ -19,19 +19,12 @@ class SpamCheckerManager:
         difference_time = user_object.last_message_time - user_object.first_message_time
         if (user_object.message_count >= self.MESSAGE_LIMIT
                 and difference_time <= self.MESSAGE_LIMIT_INTERVAL):
-            print('Условия спама сработали')
             return True
 
         elif difference_time > self.MESSAGE_LIMIT_INTERVAL:
             user_object.reset_attributes()
-            print(
-                f' условие сработало, теперь у юзера такие параметры {user_object.first_message_time}, {user_object.last_message_time}, {user_object.message_count}'
-            )
             return False
         else:
             user_object.message_count += 1
             user_object.last_message_time = time.time()
-            print(
-                f' {user_object.first_message_time}, {user_object.last_message_time}, {user_object.message_count}Условия спама не сработали'
-            )
             return False
