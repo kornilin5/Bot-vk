@@ -92,14 +92,14 @@ class Bot:
             if not self.user_manager.exists(user_id):
                 self.user_manager.add(user_id)
 
-            if not self.database.check_in_database(
+            if not self.database.check_user(
                     user_id) and message not in commands_list:
-                self.database.add_to_database(user_id)
+                self.database.add_user(user_id)
                 self.send_message(user_id, commands_list['/info'])
             if message not in commands_list:
                 return
 
-            if not self.user_blocker.is_user_blocked(user_id):
+            if not self.user_blocker.blocked_status(user_id):
                 self.user_blocker.remove_ban_and_reset_attributes(
                     user_id, self.user_manager.fetch(user_id))
 

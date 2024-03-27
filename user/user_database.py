@@ -25,7 +25,7 @@ class UserDatabaseInfo:
                                              database=self.database_sql)
         return connection
 
-    def check_in_database(self, user_id):
+    def check_user(self, user_id):
         """
         Функция проверки пользователя в базе данных
         """
@@ -39,7 +39,7 @@ class UserDatabaseInfo:
             else:
                 return False
 
-    def add_to_database(self, user_id):
+    def add_user(self, user_id):
         """
         Функция добавления пользователя в базу данных
         """

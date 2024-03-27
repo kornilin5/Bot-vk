@@ -24,7 +24,7 @@ class UserBlocker:
             del self.banned_users[user_id]
             user_object.reset_attributes()
 
-    def is_user_blocked(self, user_id):
+    def blocked_status(self, user_id):
         """
         Проверяет, заблокирован ли пользователь.
         """
