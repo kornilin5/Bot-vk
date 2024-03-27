@@ -21,8 +21,9 @@ class Bot:
     Класс Bot реализует функционал бота для ВКонтакте.
     """
 
-    def __init__(self, token: str, user_blocker: any, spam_checker: any,
-                 user_manager: any, database: any):
+    def __init__(self, token: str, user_blocker: UserBlocker,
+                 spam_checker: SpamCheckerManager, user_manager: UserManager,
+                 database: UserDatabaseInfo):
         self.token = token
         self.vk_session = vk_api.VkApi(token=self.token)
         self.vk = self.vk_session.get_api()
