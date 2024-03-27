@@ -39,7 +39,7 @@ class Bot:
         """
         return f'{GROUP_LINK}={user_id}'
 
-    def send_message(self, user_id, message):
+    def send_message_to_user(self, user_id, message):
         """
         Отправляет сообщение пользователю
         """
@@ -57,14 +57,14 @@ class Bot:
         message_from_admin = (
             f"&#128276; Пользователь вызывает администратора через сообщение сообщества. "
             f"Ссылка на диалог: {dialog_link}")
-        self.send_message(admin_id, message_from_admin)
+        self.send_message_to_user(admin_id, message_from_admin)
 
     def message_to_admin_and_user(self, user_id, admin_id, message):
         """
         Отправляет сообщение администратору и пользователю.
         """
         self.message_from_admin(user_id, admin_id)
-        self.send_message(user_id, message)
+        self.send_message_to_user(user_id, message)
 
     def handler_user_message(self, user_id, message, commands_list):
         """
@@ -77,9 +77,9 @@ class Bot:
             self.message_to_admin_and_user(user_id, THIRD_PARTY_ID_TWO,
                                            commands_list[message])
         elif message == '/admin':
-            self.send_message(user_id, commands_list[message])
+            self.send_message_to_user(user_id, commands_list[message])
         else:
-            self.send_message(user_id, commands_list[message])
+            self.send_message_to_user(user_id, commands_list[message])
 
     def handle_event(self, event):
         """
@@ -95,7 +95,7 @@ class Bot:
             if not self.database.check_user(
                     user_id) and message not in commands_list:
                 self.database.add_user(user_id)
-                self.send_message(user_id, commands_list['/info'])
+                self.send_message_to_user(user_id, commands_list['/info'])
             if message not in commands_list:
                 return
 
@@ -106,7 +106,7 @@ class Bot:
                 if self.spam_checker.detect_spam(
                         self.user_manager.fetch(user_id)):
                     self.user_blocker.block_user(user_id)
-                    self.send_message(
+                    self.send_message_to_user(
                         user_id,
                         'Вы заблокированы на минуту за спам командами')
                     return
